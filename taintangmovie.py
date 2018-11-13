@@ -10,7 +10,7 @@ def get_hrefs(url):
     text = response.text
     html = etree.HTML(text)
     _hrefs = html.xpath('//div[@class="co_content8"]//ul//table//a/@href')
-    hrefs = map(lambda urls: 'https://www.dytt8.net' + url, _hrefs)
+    hrefs = map(lambda href: 'https://www.dytt8.net' + href, _hrefs)
     return hrefs
 
 def get_details(href):
@@ -126,12 +126,16 @@ def get_details(href):
     movie['img'] = img
     return movie
 
-if __name__ == '__main__':
-    m = get_details('https://www.dytt8.net/html/gndy/dyzz/20181108/57761.html')
-    # 待爬取的url：
-    urls = []
-    for i in range(1,184):
-        urls.append('https://www.dytt8.net/html/gndy/dyzz/list_23_' + str(i) + '.html')
 
-    for i in urls:
-        get_hrefs(i)
+def main():
+    base_url = 'https://www.dytt8.net/html/gndy/dyzz/list_23_{}.html'
+    movies = []
+    for x in range(7, 8):
+        url = base_url.format(x)
+        hrefs = get_hrefs(url)
+        for href in hrefs:
+            movies.append(get_details(href))
+    print(movies)
+
+if __name__ == '__main__':
+    pass
