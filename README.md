@@ -7,3 +7,10 @@
 
 问题：
     4568条记录的关键字提取，效率问题
+
+重要函数：
+strip()
+map()
+lambda
+enumerate()
+replace()
