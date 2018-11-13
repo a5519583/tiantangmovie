@@ -14,3 +14,4 @@ map()
 lambda
 enumerate()
 replace()
+startswith()
